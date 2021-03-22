@@ -2,11 +2,13 @@ import numpy as np
 import patterns as patt
 from linearalg import linalg
 from linearalg import string_functions as sf
-
+from chemistry import chem
 
 LINALG_OPS = ('dot', 'cross', 'angle', 'plane',
               'det', 'matmul', 'matsum', 'eigenvals',
               'inverse')
+
+CHEM_OPS = ('econfig')
 
 
 def response(command):
@@ -19,6 +21,10 @@ def response(command):
 
     if operation in LINALG_OPS:
         return linalg_response(operation, command)
+
+    elif operation in CHEM_OPS:
+        return chem_response(operation, command)
+
     else:
         return f'"{operation}" is not a valid operation!'
 
@@ -153,6 +159,29 @@ def linalg_response(operation, command):
                 return sf.array_to_matrix(linalg.matrix_addition(matrices))
             except ValueError:
                 return 'Matrices must have an equal number of rows and columns to be added!'
+
+
+def chem_response(operation, command):
+    electrons_list = patt.ELECTRONS.findall(command)
+
+    if operation == 'econfig':
+
+        if len(electrons_list) > 10:
+            return 'Cannot compute more than ten configurations at once'
+
+        for electrons in electrons_list:
+            if int(electrons) < 1 or int(electrons) > 118:
+                return f'{electrons} is not a valid amount of electrons!'
+
+        response = ''
+        for i, electrons in enumerate(electrons_list):
+            config = chem.electron_config(int(electrons))
+            response += f'electrons: {electrons}\nconfiguration: {config}'
+
+            if i < len(electrons_list) - 1:
+                response += '\n\n'
+
+        return response
 
 
 if __name__ == '__main__':

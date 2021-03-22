@@ -17,3 +17,8 @@ PT = re.compile(
 
 MATRIX = re.compile(
     r'\bmatrix[([](((-?\d+[./]?\d*)\s)*(-?\d+[./]?\d*),(\s)*)*((-?\d+[./]?\d*)\s)*(-?\d+[./]?\d*)[])]')
+
+
+ELECTRONS = re.compile(
+    r'\be\s*=\s*(\d+)'
+)

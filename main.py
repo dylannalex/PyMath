@@ -136,6 +136,14 @@ def matrices(update, context) -> None:
         text=txt.MATRICES_COMMANDS)
 
 
+# Chemistry commands:
+def atoms(update, context) -> None:
+    context.bot.sendMessage(
+        chat_id=update.effective_user['id'],
+        parse_mode='MarkdownV2',
+        text=txt.ATOMS_COMMANDS)
+
+
 def main() -> None:
     bot = telegram.Bot(token=TOKEN)
 
@@ -153,6 +161,9 @@ def main() -> None:
     dp.add_handler(CommandHandler('vectors', vectors))
     dp.add_handler(CommandHandler('plane', plane))
     dp.add_handler(CommandHandler('matrices', matrices))
+
+    # Chemistry commands
+    dp.add_handler(CommandHandler('atoms', atoms))
 
     dp.add_handler(MessageHandler(Filters.text, handle_message))
     run(updater)

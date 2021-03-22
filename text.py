@@ -6,6 +6,9 @@ I can help you with your math operations\! Look at the commands below to get mor
 /vectors \- vectors operations
 /plane \- plane operations
 
+*CHEMISTRY*
+/atoms \- atoms operations  
+
 *BOT INFORMATION*
 Creator: Dylan Tintenfich
 GitHub: [PyMath](https://github.com/dylannalex/PyMath.git)
@@ -77,4 +80,19 @@ matsum matrix\[a b, c d\] matrix\[e f, g h\]
 
 _Eigen values:_
 eigenvals matrix\[a b, c d\]
+'''
+
+ATOMS_COMMANDS = r'''
+*Electron configuration:*
+_Operation sintax:_
+econfig e\=X  \(\"X\" is the number of electrons\)
+
+_Features:_
+\-Maximum number of electrons: 118
+\-Multiple configurations at once: econfig e\=X e\=Y e\=Z \.\.\.
+
+_Examples:_
+econfig e\=102
+econfig e\=10 e\=4
+econfig e\=111 e\=45 e\=5
 '''
